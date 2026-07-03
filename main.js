@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach((section) => sectionObserver.observe(section));
 
   // ---- Scroll reveal animation ----
-  const revealElements = document.querySelectorAll('.card, .timeline__item, .role-card, .faq__item, .cta-box');
+  const revealElements = document.querySelectorAll('.card, .timeline__item, .role-card, .faq__item, .terms__block, .cta-box');
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
