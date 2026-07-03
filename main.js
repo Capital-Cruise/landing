@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach((section) => sectionObserver.observe(section));
 
   // ---- Scroll reveal animation ----
-  const revealElements = document.querySelectorAll('.card, .timeline__item, .role-card, .cta-box');
+  const revealElements = document.querySelectorAll('.card, .timeline__item, .role-card, .faq__item, .cta-box');
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -165,6 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   metricValues.forEach((el) => metricObserver.observe(el));
+
+  // ---- FAQ accordion ----
+  const faqItems = document.querySelectorAll('.faq__item');
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector('.faq__question');
+    if (!question) return;
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      faqItems.forEach((other) => {
+        other.classList.remove('open');
+        const btn = other.querySelector('.faq__question');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 });
 
 // ---- Animate numeric values ----
