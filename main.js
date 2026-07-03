@@ -3,6 +3,15 @@
 // ============================
 
 document.addEventListener('DOMContentLoaded', () => {
+  const frontendBase = window.CAPITAL_CRUISE_CONFIG?.frontendUrl?.replace(/\/$/, '') ?? '';
+
+  document.querySelectorAll('[data-frontend-link]').forEach((link) => {
+    const path = link.getAttribute('data-frontend-link') || '/login';
+    if (frontendBase) {
+      link.href = `${frontendBase}${path.startsWith('/') ? path : `/${path}`}`;
+    }
+  });
+
   // ---- Initialize Lucide icons ----
   if (window.lucide) {
     lucide.createIcons();
